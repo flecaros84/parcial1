@@ -215,31 +215,3 @@ document.addEventListener('DOMContentLoaded', async () => {
   window.addEventListener('resize', applyNavPadding);
   window.addEventListener('load', applyNavPadding);
 });
-
-document.addEventListener('DOMContentLoaded', () => {
-  const isGH = location.hostname.endsWith('github.io');
-  if (!isGH) return; // en local no tocamos nada
-
-  const REPO = '/parcial1';
-
-  // 1) Arregla el logo para GH Pages
-  const logo = document.querySelector('header .navbar-brand img[alt="Logo"]');
-  if (logo) {
-    const raw = logo.getAttribute('src'); // usa el atributo, no .src (que es absoluto)
-    if (raw && !raw.startsWith(REPO)) {
-      const fixed = raw.startsWith('/') ? REPO + raw : REPO + '/' + raw;
-      logo.setAttribute('src', fixed);
-    }
-  }
-
-  // 2) Home/brand -> index correcto en GH Pages
-  const brand = document.querySelector('header .navbar-brand');
-  if (brand) brand.setAttribute('href', REPO + '/index.html');
-
-  // 3) (Opcional) corrige rutas de secciones que sí existen
-  const tienda = document.querySelector('a[data-nav="tienda"]');
-  if (tienda) tienda.setAttribute('href', REPO + '/partials/tienda.html');
-
-  const carro = document.querySelector('a[data-nav="carro"]');
-  if (carro) carro.setAttribute('href', REPO + '/partials/carro.html');
-});

@@ -1,0 +1,164 @@
+/* Hero moderno */
+.hero-carousel .carousel-item {
+    height: clamp(60vh, 80vh, 92vh);
+    /* mismo alto responsivo que tenías */
+}
+
+/* Imagen de cada slide */
+.hero-carousel .carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* llenar sin deformar */
+    object-position: var(--fx, 50%) var(--fy, 50%);
+    /* foco ajustable por slide */
+    filter: saturate(1.05) contrast(1.05);
+    will-change: transform;
+    z-index: 0;
+}
+
+/* Overlay: NO debe bloquear controles */
+.hero-carousel .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, .35) 0%, rgba(0, 0, 0, .45) 60%, rgba(0, 0, 0, .55) 100%);
+    pointer-events: none;
+    /* clave: no intercepta clics */
+    z-index: 1;
+}
+
+/* Caption por encima del overlay */
+.hero-carousel .carousel-caption {
+    position: absolute;
+    inset: 0;
+    padding: clamp(1rem, 3vw, 3rem);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+}
+
+.hero-carousel .hero-copy {
+    max-width: 900px;
+}
+
+.hero-carousel h1,
+.hero-carousel p {
+    color: #fff;
+    text-shadow: 0 2px 14px rgba(0, 0, 0, .35);
+}
+
+.hero-carousel .btn {
+    border-radius: 999px;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, .18);
+}
+
+/* Controles y bullets por encima de todo */
+.carousel-control-prev,
+.carousel-control-next {
+    width: 12%;
+    z-index: 3;
+}
+
+.carousel-indicators {
+    z-index: 3;
+}
+
+.carousel-indicators [data-bs-target] {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+/* Utilidades de foco (opcional) */
+.hero-focus-top {
+    --fy: 25%;
+}
+
+/* muestra más cielo   */
+.hero-focus-bottom {
+    --fy: 75%;
+}
+
+/* muestra más piso    */
+.hero-focus-left {
+    --fx: 25%;
+}
+
+/* mueve a la izquierda */
+.hero-focus-right {
+    --fx: 75%;
+}
+
+/* mueve a la derecha  */
+
+body {
+    padding-top: 150px;
+    /* Ajusta según el alto de tu navbar */
+}
+
+/* Capa base: fijo bajo la navbar, con z-index correcto */
+.shop-subbar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  /* el top real lo setea layout.js con --nav-height y ajuste dinámico */
+  top: var(--nav-height, 56px);
+  z-index: 1029; /* Navbar Bootstrap suele estar en 1030 */
+  border-bottom: 1px solid rgba(255, 255, 255, .14);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, .25);
+}
+
+/* Variante “glass” gris oscura difuminada */
+.shop-subbar.glass-dark {
+  background: rgba(30, 30, 30, .55);
+  backdrop-filter: saturate(140%) blur(10px);
+  -webkit-backdrop-filter: saturate(140%) blur(10px);
+  color: #fff;
+}
+
+/* Detalles de contraste */
+.shop-subbar .vr {
+  opacity: .35;
+  border-color: rgba(255, 255, 255, .35) !important;
+}
+.shop-subbar a { color: #fff; text-decoration: underline; text-underline-offset: 2px; }
+.shop-subbar a:hover { opacity: .85; }
+
+/* Tipografía responsiva */
+.shop-subbar .h6 { letter-spacing: .2px; }
+@media (max-width: 576px) {
+  .shop-subbar p { font-size: .85rem; }
+}
+
+/* Tienda: reducir padding vertical del contenedor principal */
+main.container {
+  padding-top: 1rem !important;
+  padding-bottom: 1.25rem !important;
+}
+
+/* Gutters más pequeños solo en la tienda */
+#gridTienda {
+  --bs-gutter-x: 1.25rem;
+  --bs-gutter-y: 1.25rem; /* deja este valor; no lo bajes más */
+}
+
+#gridTienda .card {
+  --bs-card-spacer-y: 1rem;   /* un poco más de respiro */
+  --bs-card-spacer-x: 1rem;
+  border-radius: .5rem;
+}
+#gridTienda .card-body { padding: 1rem; }
+#gridTienda .card-title { margin-bottom: .25rem; font-size: 1rem; font-weight: 600; }
+
+/* Imagen con buena presencia visual en 2–3 columnas */
+#gridTienda .card-img-top {
+  aspect-ratio: 4/3;   /* altura proporcional al ancho de la columna */
+  width: 100%;
+  height: auto;         /* el alto lo define el aspect-ratio */
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  border-top-left-radius: .5rem;
+  border-top-right-radius: .5rem;
+}
